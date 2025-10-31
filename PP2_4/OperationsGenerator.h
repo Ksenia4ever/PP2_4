@@ -14,15 +14,19 @@ public:
         Operation Op;
         double Weight = 0;
     };
+    using TOperationDistribution = std::vector<OperationWeight>;
 
-    OperationsGenerator(std::vector<OperationWeight> distribution);
+
+    OperationsGenerator(const TOperationDistribution& distribution);
 
     size_t GetCount() const { return count; }
     void SetCount(size_t count) { this->count = count; }
 
     TOperations operator()();
 
-    static std::vector<OperationWeight> GetTaskDistribution();
+    static TOperationDistribution GetTaskDistribution();
+    static TOperationDistribution GetUniformDistribution();
+    static TOperationDistribution GetNonTaskDistribution();
 
 private:
 
